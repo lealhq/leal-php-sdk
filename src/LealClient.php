@@ -89,8 +89,8 @@ class LealClient
             'Authorization' => "Bearer $token",
             'X-Fern-Language' => 'PHP',
             'X-Fern-SDK-Name' => 'Leal',
-            'X-Fern-SDK-Version' => '0.0.14',
-            'User-Agent' => 'lealhq/leal/0.0.14',
+            'X-Fern-SDK-Version' => '0.0.15',
+            'User-Agent' => 'lealhq/leal/0.0.15',
         ];
 
         $this->options = $options ?? [];
