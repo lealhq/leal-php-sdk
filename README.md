@@ -3,10 +3,19 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Flealhq%2Fleal-php-sdk)
 [![php shield](https://img.shields.io/badge/php-packagist-pink)](https://packagist.org/packages/lealhq/leal)
 
-The Leal PHP library provides convenient access to the Leal APIs from PHP.
+Digital loyalty stamp cards in Apple Wallet and Google Wallet, for local
+businesses. This library covers the whole [Leal](https://www.getleal.com)
+API, so you can enrol customers, add stamps, redeem rewards and read a
+card's wallet links from your own application.
+
+- Guides and a page for every language: [www.getleal.com/developers](https://www.getleal.com/developers)
+- Create an API token: [app.getleal.com/api_tokens](https://app.getleal.com/api_tokens)
+- The OpenAPI description these libraries are built from: [www.getleal.com/openapi.json](https://www.getleal.com/openapi.json)
+
 
 ## Table of Contents
 
+- [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -17,6 +26,10 @@ The Leal PHP library provides convenient access to the Leal APIs from PHP.
   - [Retries](#retries)
   - [Timeouts](#timeouts)
 - [Contributing](#contributing)
+
+## Documentation
+
+API reference documentation is available [here](https://app.getleal.com/docs/api.html).
 
 ## Requirements
 
@@ -38,18 +51,17 @@ Instantiate and use the client with the following:
 namespace Example;
 
 use Leal\LealClient;
-use Leal\Cards\Requests\CreateCardsRequest;
-use Leal\Cards\Types\CreateCardsRequestCard;
+use Leal\CustomerCards\Requests\StampCustomerCardsRequest;
 
 $client = new LealClient(
     token: '<token>',
 );
-$client->cards->create(
+$client->customerCards->stamp(
     1,
-    new CreateCardsRequest([
-        'card' => new CreateCardsRequestCard([
-            'name' => 'name',
-        ]),
+    1,
+    1,
+    new StampCustomerCardsRequest([
+        'stamps' => 1,
     ]),
 );
 
@@ -87,7 +99,7 @@ use Leal\Exceptions\LealApiException;
 use Leal\Exceptions\LealException;
 
 try {
-    $response = $client->cards->create(...);
+    $response = $client->customerCards->stamp(...);
 } catch (LealApiException $e) {
     echo 'API Exception occurred: ' . $e->getMessage() . "\n";
     echo 'Status Code: ' . $e->getCode() . "\n";
@@ -146,7 +158,7 @@ The `retryStatusCodes` configuration controls which [5XX](https://developer.mozi
 Use the `maxRetries` request option to configure this behavior.
 
 ```php
-$response = $client->cards->create(
+$response = $client->customerCards->stamp(
     ...,
     options: [
         'maxRetries' => 0 // Override maxRetries at the request level
@@ -159,7 +171,7 @@ $response = $client->cards->create(
 The SDK defaults to a 30 second timeout. Use the `timeout` option to configure this behavior.
 
 ```php
-$response = $client->cards->create(
+$response = $client->customerCards->stamp(
     ...,
     options: [
         'timeout' => 3.0 // Override timeout at the request level
