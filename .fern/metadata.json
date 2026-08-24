@@ -1,0 +1,15 @@
+{
+  "cliVersion": "5.102.0",
+  "generatorName": "fernapi/fern-php-sdk",
+  "generatorVersion": "2.20.4",
+  "generatorConfig": {
+    "namespace": "Leal",
+    "clientName": "LealClient",
+    "packageName": "lealhq/leal"
+  },
+  "originGitCommit": "1ac63d1266a2e1fa65495a243730b91cc7bb36c7",
+  "originGitCommitIsDirty": false,
+  "invokedBy": "ci",
+  "ciProvider": "github",
+  "sdkVersion": "0.0.7"
+}
