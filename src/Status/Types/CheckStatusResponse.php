@@ -50,6 +50,12 @@ class CheckStatusResponse extends JsonSerializableType
     public string $status;
 
     /**
+     * @var CheckStatusResponseVersioning $versioning
+     */
+    #[JsonProperty('versioning')]
+    public CheckStatusResponseVersioning $versioning;
+
+    /**
      * @param array{
      *   apiVersion: string,
      *   authentication: string,
@@ -58,6 +64,7 @@ class CheckStatusResponse extends JsonSerializableType
      *   openapiUrl: string,
      *   rateLimit: CheckStatusResponseRateLimit,
      *   status: string,
+     *   versioning: CheckStatusResponseVersioning,
      * } $values
      */
     public function __construct(
@@ -70,6 +77,7 @@ class CheckStatusResponse extends JsonSerializableType
         $this->openapiUrl = $values['openapiUrl'];
         $this->rateLimit = $values['rateLimit'];
         $this->status = $values['status'];
+        $this->versioning = $values['versioning'];
     }
 
     /**

@@ -7,9 +7,9 @@
     "clientName": "LealClient",
     "packageName": "lealhq/leal"
   },
-  "originGitCommit": "93573024b076f6e530d634a8a2b9f8c248da28c1",
+  "originGitCommit": "0067a8a0df5482e89ae3c7e4efba1a6ca6633f64",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
   "ciProvider": "github",
-  "sdkVersion": "0.0.16"
+  "sdkVersion": "0.0.17"
 }
