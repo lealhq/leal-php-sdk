@@ -14,6 +14,18 @@ class UpdatePostersRequestPoster extends JsonSerializableType
     public ?bool $active;
 
     /**
+     * @var ?string $contactCollectionMode Which contact fields appear on the public signup form
+     */
+    #[JsonProperty('contact_collection_mode')]
+    public ?string $contactCollectionMode;
+
+    /**
+     * @var ?float $minimumAge Minimum customer age required for signup. Requires require_birthday to be true.
+     */
+    #[JsonProperty('minimum_age')]
+    public ?float $minimumAge;
+
+    /**
      * @var ?string $paperSize Print size – one of: a4, a5, a6, letter
      */
     #[JsonProperty('paper_size')]
@@ -24,6 +36,24 @@ class UpdatePostersRequestPoster extends JsonSerializableType
      */
     #[JsonProperty('primary_color')]
     public ?string $primaryColor;
+
+    /**
+     * @var ?bool $requireBirthday Whether date of birth is required on the public signup form
+     */
+    #[JsonProperty('require_birthday')]
+    public ?bool $requireBirthday;
+
+    /**
+     * @var ?bool $requireEmail Whether email is required when it is collected
+     */
+    #[JsonProperty('require_email')]
+    public ?bool $requireEmail;
+
+    /**
+     * @var ?bool $requirePhone Whether phone number is required when it is collected
+     */
+    #[JsonProperty('require_phone')]
+    public ?bool $requirePhone;
 
     /**
      * @var ?string $secondaryColor Secondary brand color as a hex string
@@ -46,8 +76,13 @@ class UpdatePostersRequestPoster extends JsonSerializableType
     /**
      * @param array{
      *   active?: ?bool,
+     *   contactCollectionMode?: ?string,
+     *   minimumAge?: ?float,
      *   paperSize?: ?string,
      *   primaryColor?: ?string,
+     *   requireBirthday?: ?bool,
+     *   requireEmail?: ?bool,
+     *   requirePhone?: ?bool,
      *   secondaryColor?: ?string,
      *   textColor?: ?string,
      *   title?: ?string,
@@ -57,8 +92,13 @@ class UpdatePostersRequestPoster extends JsonSerializableType
         array $values = [],
     ) {
         $this->active = $values['active'] ?? null;
+        $this->contactCollectionMode = $values['contactCollectionMode'] ?? null;
+        $this->minimumAge = $values['minimumAge'] ?? null;
         $this->paperSize = $values['paperSize'] ?? null;
         $this->primaryColor = $values['primaryColor'] ?? null;
+        $this->requireBirthday = $values['requireBirthday'] ?? null;
+        $this->requireEmail = $values['requireEmail'] ?? null;
+        $this->requirePhone = $values['requirePhone'] ?? null;
         $this->secondaryColor = $values['secondaryColor'] ?? null;
         $this->textColor = $values['textColor'] ?? null;
         $this->title = $values['title'] ?? null;

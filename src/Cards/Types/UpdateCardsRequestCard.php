@@ -4,14 +4,27 @@ namespace Leal\Cards\Types;
 
 use Leal\Core\Json\JsonSerializableType;
 use Leal\Core\Json\JsonProperty;
+use Leal\Core\Types\ArrayType;
 
 class UpdateCardsRequestCard extends JsonSerializableType
 {
+    /**
+     * @var ?array<string> $auxiliaryFields Up to two extra front-of-pass fields. Blank values are ignored.
+     */
+    #[JsonProperty('auxiliary_fields'), ArrayType(['string'])]
+    public ?array $auxiliaryFields;
+
     /**
      * @var ?string $cardColor Hex colour for the card background
      */
     #[JsonProperty('card_color')]
     public ?string $cardColor;
+
+    /**
+     * @var ?string $expiresAt Card expiry timestamp (ISO 8601)
+     */
+    #[JsonProperty('expires_at')]
+    public ?string $expiresAt;
 
     /**
      * @var ?string $headerText Optional header text displayed on the card
@@ -30,6 +43,18 @@ class UpdateCardsRequestCard extends JsonSerializableType
      */
     #[JsonProperty('name')]
     public ?string $name;
+
+    /**
+     * @var ?bool $showMemberField Whether wallet passes show the member name field
+     */
+    #[JsonProperty('show_member_field')]
+    public ?bool $showMemberField;
+
+    /**
+     * @var ?bool $showStampsToRewardField Whether wallet passes show the stamps-to-reward field
+     */
+    #[JsonProperty('show_stamps_to_reward_field')]
+    public ?bool $showStampsToRewardField;
 
     /**
      * @var ?string $stampBackgroundColor Hex colour for stamp backgrounds
@@ -81,10 +106,14 @@ class UpdateCardsRequestCard extends JsonSerializableType
 
     /**
      * @param array{
+     *   auxiliaryFields?: ?array<string>,
      *   cardColor?: ?string,
+     *   expiresAt?: ?string,
      *   headerText?: ?string,
      *   initialStamps?: ?int,
      *   name?: ?string,
+     *   showMemberField?: ?bool,
+     *   showStampsToRewardField?: ?bool,
      *   stampBackgroundColor?: ?string,
      *   stampColor?: ?string,
      *   stampIcon?: ?string,
@@ -98,10 +127,14 @@ class UpdateCardsRequestCard extends JsonSerializableType
     public function __construct(
         array $values = [],
     ) {
+        $this->auxiliaryFields = $values['auxiliaryFields'] ?? null;
         $this->cardColor = $values['cardColor'] ?? null;
+        $this->expiresAt = $values['expiresAt'] ?? null;
         $this->headerText = $values['headerText'] ?? null;
         $this->initialStamps = $values['initialStamps'] ?? null;
         $this->name = $values['name'] ?? null;
+        $this->showMemberField = $values['showMemberField'] ?? null;
+        $this->showStampsToRewardField = $values['showStampsToRewardField'] ?? null;
         $this->stampBackgroundColor = $values['stampBackgroundColor'] ?? null;
         $this->stampColor = $values['stampColor'] ?? null;
         $this->stampIcon = $values['stampIcon'] ?? null;

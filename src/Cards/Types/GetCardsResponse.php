@@ -4,6 +4,7 @@ namespace Leal\Cards\Types;
 
 use Leal\Core\Json\JsonSerializableType;
 use Leal\Core\Json\JsonProperty;
+use Leal\Core\Types\ArrayType;
 
 class GetCardsResponse extends JsonSerializableType
 {
@@ -12,6 +13,12 @@ class GetCardsResponse extends JsonSerializableType
      */
     #[JsonProperty('archived_at')]
     public string $archivedAt;
+
+    /**
+     * @var array<string> $auxiliaryFields Up to two extra front-of-pass fields
+     */
+    #[JsonProperty('auxiliary_fields'), ArrayType(['string'])]
+    public array $auxiliaryFields;
 
     /**
      * @var string $cardColor Hex colour for the card background (e.g. '#6B4226')
@@ -30,6 +37,12 @@ class GetCardsResponse extends JsonSerializableType
      */
     #[JsonProperty('customer_cards_count')]
     public int $customerCardsCount;
+
+    /**
+     * @var string $expiresAt ISO 8601 timestamp when the card expires, or null if it does not expire
+     */
+    #[JsonProperty('expires_at')]
+    public string $expiresAt;
 
     /**
      * @var string $headerText Optional header text displayed on the card
@@ -60,6 +73,18 @@ class GetCardsResponse extends JsonSerializableType
      */
     #[JsonProperty('rewards_count')]
     public int $rewardsCount;
+
+    /**
+     * @var bool $showMemberField Whether wallet passes show the member name field
+     */
+    #[JsonProperty('show_member_field')]
+    public bool $showMemberField;
+
+    /**
+     * @var bool $showStampsToRewardField Whether wallet passes show the stamps-to-reward field
+     */
+    #[JsonProperty('show_stamps_to_reward_field')]
+    public bool $showStampsToRewardField;
 
     /**
      * @var string $stampBackgroundColor Hex colour for stamp backgrounds
@@ -118,14 +143,18 @@ class GetCardsResponse extends JsonSerializableType
     /**
      * @param array{
      *   archivedAt: string,
+     *   auxiliaryFields: array<string>,
      *   cardColor: string,
      *   createdAt: string,
      *   customerCardsCount: int,
+     *   expiresAt: string,
      *   headerText: string,
      *   id: int,
      *   initialStamps: int,
      *   name: string,
      *   rewardsCount: int,
+     *   showMemberField: bool,
+     *   showStampsToRewardField: bool,
      *   stampBackgroundColor: string,
      *   stampColor: string,
      *   stampIcon: string,
@@ -141,14 +170,18 @@ class GetCardsResponse extends JsonSerializableType
         array $values,
     ) {
         $this->archivedAt = $values['archivedAt'];
+        $this->auxiliaryFields = $values['auxiliaryFields'];
         $this->cardColor = $values['cardColor'];
         $this->createdAt = $values['createdAt'];
         $this->customerCardsCount = $values['customerCardsCount'];
+        $this->expiresAt = $values['expiresAt'];
         $this->headerText = $values['headerText'];
         $this->id = $values['id'];
         $this->initialStamps = $values['initialStamps'];
         $this->name = $values['name'];
         $this->rewardsCount = $values['rewardsCount'];
+        $this->showMemberField = $values['showMemberField'];
+        $this->showStampsToRewardField = $values['showStampsToRewardField'];
         $this->stampBackgroundColor = $values['stampBackgroundColor'];
         $this->stampColor = $values['stampColor'];
         $this->stampIcon = $values['stampIcon'];

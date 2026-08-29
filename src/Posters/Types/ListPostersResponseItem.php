@@ -26,6 +26,24 @@ class ListPostersResponseItem extends JsonSerializableType
     public int $cardId;
 
     /**
+     * @var bool $collectEmail Whether the public signup form collects email
+     */
+    #[JsonProperty('collect_email')]
+    public bool $collectEmail;
+
+    /**
+     * @var bool $collectPhone Whether the public signup form collects phone number
+     */
+    #[JsonProperty('collect_phone')]
+    public bool $collectPhone;
+
+    /**
+     * @var string $contactCollectionMode Which contact fields appear on the public signup form: 'email_and_phone', 'email_only', or 'phone_only'
+     */
+    #[JsonProperty('contact_collection_mode')]
+    public string $contactCollectionMode;
+
+    /**
      * @var string $createdAt ISO 8601 creation timestamp
      */
     #[JsonProperty('created_at')]
@@ -44,6 +62,12 @@ class ListPostersResponseItem extends JsonSerializableType
     public int $id;
 
     /**
+     * @var float $minimumAge Minimum customer age required for signup
+     */
+    #[JsonProperty('minimum_age')]
+    public float $minimumAge;
+
+    /**
      * @var string $paperSize Paper size the poster is laid out for
      */
     #[JsonProperty('paper_size')]
@@ -60,6 +84,24 @@ class ListPostersResponseItem extends JsonSerializableType
      */
     #[JsonProperty('qr_code_url')]
     public string $qrCodeUrl;
+
+    /**
+     * @var bool $requireBirthday Whether date of birth is required on the public signup form
+     */
+    #[JsonProperty('require_birthday')]
+    public bool $requireBirthday;
+
+    /**
+     * @var bool $requireEmail Whether email is required when it is collected
+     */
+    #[JsonProperty('require_email')]
+    public bool $requireEmail;
+
+    /**
+     * @var bool $requirePhone Whether phone number is required when it is collected
+     */
+    #[JsonProperty('require_phone')]
+    public bool $requirePhone;
 
     /**
      * @var string $secondaryColor Hex accent colour
@@ -96,12 +138,19 @@ class ListPostersResponseItem extends JsonSerializableType
      *   accountId: int,
      *   active: bool,
      *   cardId: int,
+     *   collectEmail: bool,
+     *   collectPhone: bool,
+     *   contactCollectionMode: string,
      *   createdAt: string,
      *   displayUrl: string,
      *   id: int,
+     *   minimumAge: float,
      *   paperSize: string,
      *   primaryColor: string,
      *   qrCodeUrl: string,
+     *   requireBirthday: bool,
+     *   requireEmail: bool,
+     *   requirePhone: bool,
      *   secondaryColor: string,
      *   signupUrl: string,
      *   textColor: string,
@@ -115,12 +164,19 @@ class ListPostersResponseItem extends JsonSerializableType
         $this->accountId = $values['accountId'];
         $this->active = $values['active'];
         $this->cardId = $values['cardId'];
+        $this->collectEmail = $values['collectEmail'];
+        $this->collectPhone = $values['collectPhone'];
+        $this->contactCollectionMode = $values['contactCollectionMode'];
         $this->createdAt = $values['createdAt'];
         $this->displayUrl = $values['displayUrl'];
         $this->id = $values['id'];
+        $this->minimumAge = $values['minimumAge'];
         $this->paperSize = $values['paperSize'];
         $this->primaryColor = $values['primaryColor'];
         $this->qrCodeUrl = $values['qrCodeUrl'];
+        $this->requireBirthday = $values['requireBirthday'];
+        $this->requireEmail = $values['requireEmail'];
+        $this->requirePhone = $values['requirePhone'];
         $this->secondaryColor = $values['secondaryColor'];
         $this->signupUrl = $values['signupUrl'];
         $this->textColor = $values['textColor'];
