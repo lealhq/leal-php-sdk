@@ -117,6 +117,12 @@ class UpdateCardsResponse extends JsonSerializableType
     public string $stripColor;
 
     /**
+     * @var float $stripOpacity Opacity (0–100) of the strip background over the card colour, for a colour, an uploaded image or a preset alike. 100 renders the colour or image exactly as supplied; lower values let the card colour show through
+     */
+    #[JsonProperty('strip_opacity')]
+    public float $stripOpacity;
+
+    /**
      * @var string $stripPreset Preset strip image identifier (when strip_type is 'preset')
      */
     #[JsonProperty('strip_preset')]
@@ -160,6 +166,7 @@ class UpdateCardsResponse extends JsonSerializableType
      *   stampIcon: string,
      *   stampsRequired: int,
      *   stripColor: string,
+     *   stripOpacity: float,
      *   stripPreset: string,
      *   stripType: string,
      *   textColor: string,
@@ -187,6 +194,7 @@ class UpdateCardsResponse extends JsonSerializableType
         $this->stampIcon = $values['stampIcon'];
         $this->stampsRequired = $values['stampsRequired'];
         $this->stripColor = $values['stripColor'];
+        $this->stripOpacity = $values['stripOpacity'];
         $this->stripPreset = $values['stripPreset'];
         $this->stripType = $values['stripType'];
         $this->textColor = $values['textColor'];

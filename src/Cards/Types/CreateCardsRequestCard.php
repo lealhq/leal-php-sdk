@@ -87,6 +87,12 @@ class CreateCardsRequestCard extends JsonSerializableType
     public ?string $stripColor;
 
     /**
+     * @var ?float $stripOpacity Opacity (0–100) of the strip background over the card colour. Defaults to 100, which renders the colour or image exactly as supplied
+     */
+    #[JsonProperty('strip_opacity')]
+    public ?float $stripOpacity;
+
+    /**
      * @var ?string $stripPreset Preset strip image identifier (used when strip_type is 'preset')
      */
     #[JsonProperty('strip_preset')]
@@ -119,6 +125,7 @@ class CreateCardsRequestCard extends JsonSerializableType
      *   stampIcon?: ?string,
      *   stampsRequired?: ?int,
      *   stripColor?: ?string,
+     *   stripOpacity?: ?float,
      *   stripPreset?: ?string,
      *   stripType?: ?string,
      *   textColor?: ?string,
@@ -140,6 +147,7 @@ class CreateCardsRequestCard extends JsonSerializableType
         $this->stampIcon = $values['stampIcon'] ?? null;
         $this->stampsRequired = $values['stampsRequired'] ?? null;
         $this->stripColor = $values['stripColor'] ?? null;
+        $this->stripOpacity = $values['stripOpacity'] ?? null;
         $this->stripPreset = $values['stripPreset'] ?? null;
         $this->stripType = $values['stripType'] ?? null;
         $this->textColor = $values['textColor'] ?? null;
