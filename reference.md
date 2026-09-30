@@ -2148,6 +2148,558 @@ $client->rewards->update(
 </dl>
 </details>
 
+## Webhook Subscriptions
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;getApiV1AccountsAccountIdWebhookSubscriptions($accountId, $request) -> ?array</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns every webhook subscription for the store, oldest first. Signing secrets are not included; fetch a single subscription to read its secret.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->getApiV1AccountsAccountIdWebhookSubscriptions(
+    1,
+    new GetApiV1AccountsAccountIdWebhookSubscriptionsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$event:** `?string` — Only return subscriptions that list this event (or `*`)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;postApiV1AccountsAccountIdWebhookSubscriptions($accountId, $request) -> ?PostApiV1AccountsAccountIdWebhookSubscriptionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Subscribes a URL to one or more events. The response includes the signing `secret`; store it to
+verify deliveries. The URL must be publicly reachable over https.
+
+Events: `customer.created`, `customer.updated`, `customer_card.created`, `stamp.earned`, `stamp.removed`, `reward.unlocked`, `reward.redeemed`, or `*` for all of them.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->postApiV1AccountsAccountIdWebhookSubscriptions(
+    1,
+    new PostApiV1AccountsAccountIdWebhookSubscriptionsRequest([
+        'targetUrl' => 'target_url',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` — Your own label, up to 255 characters
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$enabled:** `?bool` — Create the subscription disabled by passing false (defaults to true)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$event:** `?string` — A single event to subscribe to. Same as `events` with one entry
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$events:** `?array` — Events to subscribe to, or `["*"]` for every event. Required unless `event` is given
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payloadFormat:** `?string` — `envelope` (default) or `flat`. `flat` sends the bare data object and cannot be combined with `*`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$targetUrl:** `string` — Public https URL that will receive the POST requests
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;getApiV1AccountsAccountIdWebhookSubscriptionsId($accountId, $id) -> ?GetApiV1AccountsAccountIdWebhookSubscriptionsIdResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a single subscription, including its signing secret and the result of the most recent delivery.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->getApiV1AccountsAccountIdWebhookSubscriptionsId(
+    1,
+    1,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `int` — Webhook subscription ID
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;deleteApiV1AccountsAccountIdWebhookSubscriptionsId($accountId, $id)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stops deliveries and deletes the subscription. This cannot be undone.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->deleteApiV1AccountsAccountIdWebhookSubscriptionsId(
+    1,
+    1,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `int` — Webhook subscription ID
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;patchApiV1AccountsAccountIdWebhookSubscriptionsId($accountId, $id, $request) -> ?PatchApiV1AccountsAccountIdWebhookSubscriptionsIdResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Changes the URL, events, label or payload format, or turns the subscription off and on. Re-enabling a subscription that was disabled for failing clears its failure state.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->patchApiV1AccountsAccountIdWebhookSubscriptionsId(
+    1,
+    1,
+    new PatchApiV1AccountsAccountIdWebhookSubscriptionsIdRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `int` — Webhook subscription ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` — Your own label, up to 255 characters
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$enabled:** `?bool` — false to pause deliveries, true to resume them
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$event:** `?string` — A single event. Same as `events` with one entry
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$events:** `?array` — Replaces the list of events, or `["*"]` for every event
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payloadFormat:** `?string` — `envelope` or `flat`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$targetUrl:** `?string` — Public https URL that will receive the POST requests
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;postApiV1AccountsAccountIdWebhookSubscriptionsIdRotateSecret($accountId, $id) -> ?PostApiV1AccountsAccountIdWebhookSubscriptionsIdRotateSecretResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the subscription's signing secret. Deliveries are signed with the new secret straight away, so update your receiver at the same time.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->postApiV1AccountsAccountIdWebhookSubscriptionsIdRotateSecret(
+    1,
+    1,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `int` — Webhook subscription ID
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;webhookSubscriptions-&gt;postApiV1AccountsAccountIdWebhookSubscriptionsIdTest($accountId, $id) -> ?PostApiV1AccountsAccountIdWebhookSubscriptionsIdTestResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Immediately sends a signed `webhook.test` event to the subscription's URL and reports what
+happened, so you can check your endpoint and signature verification without waiting for real
+activity. Test events are not retried and do not count towards disabling the subscription.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->webhookSubscriptions->postApiV1AccountsAccountIdWebhookSubscriptionsIdTest(
+    1,
+    1,
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountId:** `int` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `int` — Webhook subscription ID
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Status
 <details><summary><code>$client-&gt;status-&gt;check() -> ?CheckStatusResponse</code></summary>
 <dl>

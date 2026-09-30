@@ -9,6 +9,7 @@ use Leal\CustomerCards\CustomerCardsClient;
 use Leal\Locations\LocationsClient;
 use Leal\Posters\PostersClient;
 use Leal\Rewards\RewardsClient;
+use Leal\WebhookSubscriptions\WebhookSubscriptionsClient;
 use Leal\Status\StatusClient;
 use Psr\Http\Client\ClientInterface;
 use Leal\Core\Client\RawClient;
@@ -51,6 +52,11 @@ class LealClient
     public RewardsClient $rewards;
 
     /**
+     * @var WebhookSubscriptionsClient $webhookSubscriptions
+     */
+    public WebhookSubscriptionsClient $webhookSubscriptions;
+
+    /**
      * @var StatusClient $status
      */
     public StatusClient $status;
@@ -89,8 +95,8 @@ class LealClient
             'Authorization' => "Bearer $token",
             'X-Fern-Language' => 'PHP',
             'X-Fern-SDK-Name' => 'Leal',
-            'X-Fern-SDK-Version' => '0.0.19',
-            'User-Agent' => 'lealhq/leal/0.0.19',
+            'X-Fern-SDK-Version' => '0.0.20',
+            'User-Agent' => 'lealhq/leal/0.0.20',
         ];
 
         $this->options = $options ?? [];
@@ -111,6 +117,7 @@ class LealClient
         $this->locations = new LocationsClient($this->client, $this->options);
         $this->posters = new PostersClient($this->client, $this->options);
         $this->rewards = new RewardsClient($this->client, $this->options);
+        $this->webhookSubscriptions = new WebhookSubscriptionsClient($this->client, $this->options);
         $this->status = new StatusClient($this->client, $this->options);
     }
 }
