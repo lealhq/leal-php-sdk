@@ -69,6 +69,30 @@ class GetCardsResponse extends JsonSerializableType
     public string $name;
 
     /**
+     * @var string $qrStyle What the wallet pass QR holds: 'link' (the customer's invite link with the card code after the #, readable by the Leal scanner and by `search`) or 'code' (the bare card code). Cards created before referrals use 'code'
+     */
+    #[JsonProperty('qr_style')]
+    public string $qrStyle;
+
+    /**
+     * @var float $refereeStamps Stamps the invited friend gets when the referral pays out
+     */
+    #[JsonProperty('referee_stamps')]
+    public float $refereeStamps;
+
+    /**
+     * @var bool $referralsEnabled Whether customers can invite friends from the back of their pass. A referral pays out when the store first stamps the friend's card for a visit (a scan, or the API/POS), never for signing up
+     */
+    #[JsonProperty('referrals_enabled')]
+    public bool $referralsEnabled;
+
+    /**
+     * @var float $referrerStamps Stamps the inviting customer gets when the referral pays out
+     */
+    #[JsonProperty('referrer_stamps')]
+    public float $referrerStamps;
+
+    /**
      * @var int $rewardsCount Number of rewards defined for this card
      */
     #[JsonProperty('rewards_count')]
@@ -158,6 +182,10 @@ class GetCardsResponse extends JsonSerializableType
      *   id: int,
      *   initialStamps: int,
      *   name: string,
+     *   qrStyle: string,
+     *   refereeStamps: float,
+     *   referralsEnabled: bool,
+     *   referrerStamps: float,
      *   rewardsCount: int,
      *   showMemberField: bool,
      *   showStampsToRewardField: bool,
@@ -186,6 +214,10 @@ class GetCardsResponse extends JsonSerializableType
         $this->id = $values['id'];
         $this->initialStamps = $values['initialStamps'];
         $this->name = $values['name'];
+        $this->qrStyle = $values['qrStyle'];
+        $this->refereeStamps = $values['refereeStamps'];
+        $this->referralsEnabled = $values['referralsEnabled'];
+        $this->referrerStamps = $values['referrerStamps'];
         $this->rewardsCount = $values['rewardsCount'];
         $this->showMemberField = $values['showMemberField'];
         $this->showStampsToRewardField = $values['showStampsToRewardField'];

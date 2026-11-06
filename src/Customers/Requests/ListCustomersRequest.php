@@ -7,7 +7,7 @@ use Leal\Core\Json\JsonSerializableType;
 class ListCustomersRequest extends JsonSerializableType
 {
     /**
-     * @var ?string $search Search query to filter customers by name, email, phone, card code (barcode), or external reference ID
+     * @var ?string $search Search query to filter customers by name, email, phone, card code (barcode, or the full scanned QR text), or external reference ID
      */
     public ?string $search;
 

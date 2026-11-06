@@ -57,7 +57,9 @@ class CustomersClient
 
     /**
      * Returns a paginated list of customers for the store. Use the `search` parameter to filter
-     * by name, email, phone, card code (barcode), or external reference ID. Alternatively, pass
+     * by name, email, phone, card code (barcode), or external reference ID. A scanned wallet pass
+     * QR can be passed as it is: newer passes hold a link with the card code after the `#`, and
+     * that is matched to the card exactly. Alternatively, pass
      * `source` AND `external_id` together to perform an exact lookup by an external reference -
      * the response will contain at most one customer.
      *

@@ -45,6 +45,30 @@ class UpdateCardsRequestCard extends JsonSerializableType
     public ?string $name;
 
     /**
+     * @var ?value-of<UpdateCardsRequestCardQrStyle> $qrStyle What the wallet pass QR holds. Changing it refreshes installed passes; passes still showing the old QR keep scanning
+     */
+    #[JsonProperty('qr_style')]
+    public ?string $qrStyle;
+
+    /**
+     * @var ?float $refereeStamps Stamps the invited friend gets (>= 0 and < stamps_required)
+     */
+    #[JsonProperty('referee_stamps')]
+    public ?float $refereeStamps;
+
+    /**
+     * @var ?bool $referralsEnabled Let customers invite friends from the back of their pass. Installed passes are refreshed, as for any card change
+     */
+    #[JsonProperty('referrals_enabled')]
+    public ?bool $referralsEnabled;
+
+    /**
+     * @var ?float $referrerStamps Stamps the inviting customer gets (>= 0 and < stamps_required)
+     */
+    #[JsonProperty('referrer_stamps')]
+    public ?float $referrerStamps;
+
+    /**
      * @var ?bool $showMemberField Whether wallet passes show the member name field
      */
     #[JsonProperty('show_member_field')]
@@ -118,6 +142,10 @@ class UpdateCardsRequestCard extends JsonSerializableType
      *   headerText?: ?string,
      *   initialStamps?: ?int,
      *   name?: ?string,
+     *   qrStyle?: ?value-of<UpdateCardsRequestCardQrStyle>,
+     *   refereeStamps?: ?float,
+     *   referralsEnabled?: ?bool,
+     *   referrerStamps?: ?float,
      *   showMemberField?: ?bool,
      *   showStampsToRewardField?: ?bool,
      *   stampBackgroundColor?: ?string,
@@ -140,6 +168,10 @@ class UpdateCardsRequestCard extends JsonSerializableType
         $this->headerText = $values['headerText'] ?? null;
         $this->initialStamps = $values['initialStamps'] ?? null;
         $this->name = $values['name'] ?? null;
+        $this->qrStyle = $values['qrStyle'] ?? null;
+        $this->refereeStamps = $values['refereeStamps'] ?? null;
+        $this->referralsEnabled = $values['referralsEnabled'] ?? null;
+        $this->referrerStamps = $values['referrerStamps'] ?? null;
         $this->showMemberField = $values['showMemberField'] ?? null;
         $this->showStampsToRewardField = $values['showStampsToRewardField'] ?? null;
         $this->stampBackgroundColor = $values['stampBackgroundColor'] ?? null;

@@ -62,6 +62,12 @@ class ListCustomerCardsResponseItem extends JsonSerializableType
     public float $progressPercentage;
 
     /**
+     * @var string $referralUrl The customer's invite link while the card has referrals on (null otherwise). Safe to share: it names the customer as referrer and can't be used to stamp or redeem
+     */
+    #[JsonProperty('referral_url')]
+    public string $referralUrl;
+
+    /**
      * @var int $stampsCount Stamps collected so far
      */
     #[JsonProperty('stamps_count')]
@@ -86,7 +92,7 @@ class ListCustomerCardsResponseItem extends JsonSerializableType
     public string $updatedAt;
 
     /**
-     * @var string $uuid Public identifier used in wallet pass URLs
+     * @var string $uuid The card code: what the store scanner reads from the wallet pass QR and what staff can type in. Treat it like a membership number; it can be used to stamp and redeem
      */
     #[JsonProperty('uuid')]
     public string $uuid;
@@ -102,6 +108,7 @@ class ListCustomerCardsResponseItem extends JsonSerializableType
      *   issuedAt: string,
      *   passInstalled: bool,
      *   progressPercentage: float,
+     *   referralUrl: string,
      *   stampsCount: int,
      *   stampsRemaining: int,
      *   status: string,
@@ -121,6 +128,7 @@ class ListCustomerCardsResponseItem extends JsonSerializableType
         $this->issuedAt = $values['issuedAt'];
         $this->passInstalled = $values['passInstalled'];
         $this->progressPercentage = $values['progressPercentage'];
+        $this->referralUrl = $values['referralUrl'];
         $this->stampsCount = $values['stampsCount'];
         $this->stampsRemaining = $values['stampsRemaining'];
         $this->status = $values['status'];

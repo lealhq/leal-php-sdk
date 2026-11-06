@@ -81,6 +81,24 @@ class StampCustomerCardsResponse extends JsonSerializableType
     public float $progressPercentage;
 
     /**
+     * @var string $referralUrl The customer's invite link while the card has referrals on (null otherwise). Safe to share: it names the customer as referrer and can't be used to stamp or redeem
+     */
+    #[JsonProperty('referral_url')]
+    public string $referralUrl;
+
+    /**
+     * @var float $referralsCount Friends this customer has invited who joined, rewarded or not
+     */
+    #[JsonProperty('referrals_count')]
+    public float $referralsCount;
+
+    /**
+     * @var StampCustomerCardsResponseReferredBy $referredBy
+     */
+    #[JsonProperty('referred_by')]
+    public StampCustomerCardsResponseReferredBy $referredBy;
+
+    /**
      * @var int $stampsCount Stamps collected so far
      */
     #[JsonProperty('stamps_count')]
@@ -105,7 +123,7 @@ class StampCustomerCardsResponse extends JsonSerializableType
     public string $updatedAt;
 
     /**
-     * @var string $uuid Public identifier used in wallet pass URLs
+     * @var string $uuid The card code: what the store scanner reads from the wallet pass QR and what staff can type in. Treat it like a membership number; it can be used to stamp and redeem
      */
     #[JsonProperty('uuid')]
     public string $uuid;
@@ -124,6 +142,9 @@ class StampCustomerCardsResponse extends JsonSerializableType
      *   issuedAt: string,
      *   passInstalled: bool,
      *   progressPercentage: float,
+     *   referralUrl: string,
+     *   referralsCount: float,
+     *   referredBy: StampCustomerCardsResponseReferredBy,
      *   stampsCount: int,
      *   stampsRemaining: int,
      *   status: string,
@@ -146,6 +167,9 @@ class StampCustomerCardsResponse extends JsonSerializableType
         $this->issuedAt = $values['issuedAt'];
         $this->passInstalled = $values['passInstalled'];
         $this->progressPercentage = $values['progressPercentage'];
+        $this->referralUrl = $values['referralUrl'];
+        $this->referralsCount = $values['referralsCount'];
+        $this->referredBy = $values['referredBy'];
         $this->stampsCount = $values['stampsCount'];
         $this->stampsRemaining = $values['stampsRemaining'];
         $this->status = $values['status'];
