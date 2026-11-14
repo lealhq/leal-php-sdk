@@ -9,6 +9,12 @@ use Leal\Core\Types\ArrayType;
 class CreateCardsRequestCard extends JsonSerializableType
 {
     /**
+     * @var ?value-of<CreateCardsRequestCardApplePassStyle> $applePassStyle Apple Wallet layout. 'poster' is iOS 27's full-bleed layout; older iPhones show the store card. Defaults to 'store_card'
+     */
+    #[JsonProperty('apple_pass_style')]
+    public ?string $applePassStyle;
+
+    /**
      * @var ?array<string> $auxiliaryFields Up to two extra front-of-pass fields. Blank values are ignored.
      */
     #[JsonProperty('auxiliary_fields'), ArrayType(['string'])]
@@ -25,6 +31,18 @@ class CreateCardsRequestCard extends JsonSerializableType
      */
     #[JsonProperty('expires_at')]
     public ?string $expiresAt;
+
+    /**
+     * @var ?array<string> $featuredActions Up to two buttons, shown as Featured Actions under the iOS 27 poster and as links in Google Wallet. Send an empty array to remove them.
+     */
+    #[JsonProperty('featured_actions'), ArrayType(['string'])]
+    public ?array $featuredActions;
+
+    /**
+     * @var ?value-of<CreateCardsRequestCardGoogleLogoStyle> $googleLogoStyle How the logo sits on Google Wallet. Defaults to 'round'
+     */
+    #[JsonProperty('google_logo_style')]
+    public ?string $googleLogoStyle;
 
     /**
      * @var ?string $headerText Optional header text displayed on the card
@@ -137,9 +155,12 @@ class CreateCardsRequestCard extends JsonSerializableType
     /**
      * @param array{
      *   name: string,
+     *   applePassStyle?: ?value-of<CreateCardsRequestCardApplePassStyle>,
      *   auxiliaryFields?: ?array<string>,
      *   cardColor?: ?string,
      *   expiresAt?: ?string,
+     *   featuredActions?: ?array<string>,
+     *   googleLogoStyle?: ?value-of<CreateCardsRequestCardGoogleLogoStyle>,
      *   headerText?: ?string,
      *   initialStamps?: ?int,
      *   qrStyle?: ?value-of<CreateCardsRequestCardQrStyle>,
@@ -162,9 +183,12 @@ class CreateCardsRequestCard extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
+        $this->applePassStyle = $values['applePassStyle'] ?? null;
         $this->auxiliaryFields = $values['auxiliaryFields'] ?? null;
         $this->cardColor = $values['cardColor'] ?? null;
         $this->expiresAt = $values['expiresAt'] ?? null;
+        $this->featuredActions = $values['featuredActions'] ?? null;
+        $this->googleLogoStyle = $values['googleLogoStyle'] ?? null;
         $this->headerText = $values['headerText'] ?? null;
         $this->initialStamps = $values['initialStamps'] ?? null;
         $this->name = $values['name'];

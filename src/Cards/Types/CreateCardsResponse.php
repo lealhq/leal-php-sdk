@@ -9,6 +9,12 @@ use Leal\Core\Types\ArrayType;
 class CreateCardsResponse extends JsonSerializableType
 {
     /**
+     * @var string $applePassStyle Apple Wallet layout: 'store_card' (the classic layout) or 'poster' (iOS 27 full-bleed artwork; iPhones on iOS 26 or earlier show the store card)
+     */
+    #[JsonProperty('apple_pass_style')]
+    public string $applePassStyle;
+
+    /**
      * @var string $archivedAt ISO 8601 timestamp when the card was archived, or null if active
      */
     #[JsonProperty('archived_at')]
@@ -43,6 +49,24 @@ class CreateCardsResponse extends JsonSerializableType
      */
     #[JsonProperty('expires_at')]
     public string $expiresAt;
+
+    /**
+     * @var array<string> $featuredActions Up to two buttons: Featured Actions under the iOS 27 poster, and links under the pass in Google Wallet
+     */
+    #[JsonProperty('featured_actions'), ArrayType(['string'])]
+    public array $featuredActions;
+
+    /**
+     * @var string $googleLogoStyle How the logo sits on Google Wallet: 'round' (the square icon in a circle, with the store name) or 'wide' (the logo in place of the circle and store name)
+     */
+    #[JsonProperty('google_logo_style')]
+    public string $googleLogoStyle;
+
+    /**
+     * @var CreateCardsResponseGoogleWallet $googleWallet
+     */
+    #[JsonProperty('google_wallet')]
+    public CreateCardsResponseGoogleWallet $googleWallet;
 
     /**
      * @var string $headerText Optional header text displayed on the card
@@ -172,12 +196,16 @@ class CreateCardsResponse extends JsonSerializableType
 
     /**
      * @param array{
+     *   applePassStyle: string,
      *   archivedAt: string,
      *   auxiliaryFields: array<string>,
      *   cardColor: string,
      *   createdAt: string,
      *   customerCardsCount: int,
      *   expiresAt: string,
+     *   featuredActions: array<string>,
+     *   googleLogoStyle: string,
+     *   googleWallet: CreateCardsResponseGoogleWallet,
      *   headerText: string,
      *   id: int,
      *   initialStamps: int,
@@ -204,12 +232,16 @@ class CreateCardsResponse extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
+        $this->applePassStyle = $values['applePassStyle'];
         $this->archivedAt = $values['archivedAt'];
         $this->auxiliaryFields = $values['auxiliaryFields'];
         $this->cardColor = $values['cardColor'];
         $this->createdAt = $values['createdAt'];
         $this->customerCardsCount = $values['customerCardsCount'];
         $this->expiresAt = $values['expiresAt'];
+        $this->featuredActions = $values['featuredActions'];
+        $this->googleLogoStyle = $values['googleLogoStyle'];
+        $this->googleWallet = $values['googleWallet'];
         $this->headerText = $values['headerText'];
         $this->id = $values['id'];
         $this->initialStamps = $values['initialStamps'];
